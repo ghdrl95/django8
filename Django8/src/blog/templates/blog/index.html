@@ -1,0 +1,36 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+	{% if page_obj.has_previous %}
+		<a href="?page={{ page_obj.previous_page_number }}">이전페이지</a>
+	{% endif %}
+	{% if page_obj.has_next %}
+		<a href="?page={{ page_obj.next_page_number }}">다음페이지</a>
+	{% endif %}
+	<br>
+	<table style="width:100%">
+		<tr>
+			<th> 글번호 </th>
+			<th> 제목 </th>
+			<th> 작성자 </th>
+			<th> 작성일 </th>
+		</tr>
+		{% for post in list  %}
+			<tr>
+				<td>{{post.id}}</td>
+				<td> <a href="{% url 'blog:detail' post.id %}"> {{post.headline}} </a>  </td>
+				<td>{{post.author.username}}</td>
+				<td>{{post.pub_date}}</td>
+			</tr>
+		{% endfor %}
+	</table>
+<form action="{% url 'blog:searchP' %}" method="GET">
+	{% csrf_token %}
+	<select name='type'>
+		<option value='0'>제목</option>
+		<option value='1'>내용</option>
+	</select>
+	<input type="text" name='query'/>
+	<input type="submit" value="검색"/>
+</form>
+{% endblock %}

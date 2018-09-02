@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Django Index</title>
+</head>
+<body>
+	<ul>
+		<!-- 파이썬의 for, if문을 사용할때는 { % 를 사용
+		view에서 넘겨받은 question_list는 리스트타입이므로 for에 사용가능
+		question_list의 요소에 저장된 Question 객체를 question변수에 넣음 -->
+		<!-- for의 끝을 알리기 위해서 endfor
+		if의 끝을 알리기 위해서 endif를 추가로 작성해야함 -->
+		{% for question in question_list %}
+			<li>
+				<!-- <a href="http://127.0.0.1:8000/{ {question.id} }/"> -->
+				<a href="{% url 'detail' question.id %}">{{ question.question_text }} </a>
+				<a href="{% url 'deleteQ' question.id %}">삭제</a>
+			 </li>
+		{% endfor %}
+	</ul>
+
+
+	<a href="{% url 'registerQ' %}">질문 등록</a>
+	<a href="{% url 'registerC' %}">선택지 등록</a>
+	<!-- 
+	<h1>Hello dJango</h1>
+	<!-- 파이썬 코드 작성 { { } } { % % } -- >
+	<p>파이썬 기반 웹프로그래밍 { { hello } }  </p> 
+ 	-->
+</body>
+</html>

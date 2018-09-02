@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- 파이썬에서 if문에 변수이름만 넣은경우 해당 변수에 None값이
+	아니면 True, None값이면 False -->
+	{% if error %}
+		<p> 에러 : {{error}} </p>
+	{% endif %}
+	
+	<form action="" method="Post">
+		{% csrf_token %}
+		<table>
+			{{ data.as_table }}
+		</table>
+		<input type="submit" value="선택지수정">
+	</form>
+	
+</body>
+</html>
+
+
+
+
+
+

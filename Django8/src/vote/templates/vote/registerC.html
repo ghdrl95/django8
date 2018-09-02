@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>선택지 작성</title>
+</head>
+<body>
+	{% if error %}
+		<p style="color: red">{{ error }}</p>
+	{% endif %}
+	<form action="" method="post">
+		{% csrf_token %}
+		<table>
+			{{ form.as_table }}
+		</table>
+		<input type="submit" value="선택지 생성"/>
+	</form>
+</body>
+</html>

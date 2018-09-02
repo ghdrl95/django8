@@ -1,0 +1,25 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<table>
+	<tr>
+		<th > 제목/작성일 </th>
+		<th>{{ post.headline }}/{{ post.pub_date }} </th>
+	</tr>
+	<tr>
+		<th>내용</th>
+		<td>
+		{%for f in post.file_set.all %}
+			<a href="{{ f.file.url }}" download>다운로드</a>
+		{%endfor  %}
+		<br>
+		{%for i in post.image_set.all %}
+			<img src="{{ i.image.url }}" width=20% />
+		{%endfor  %}
+		<br>
+		{{post.content}}
+		
+		</td>
+	</tr>
+</table>
+{% endblock %}

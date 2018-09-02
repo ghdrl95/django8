@@ -1,0 +1,38 @@
+{% extends "blog/base.html" %}
+{% block content %}
+
+{% if list %}
+	<table style="width:100%">
+		<tr>
+			<th> 글번호 </th>
+			<th> 제목 </th>
+			<th> 작성자 </th>
+			<th> 작성일 </th>
+		</tr>
+		{% for post in list  %}
+			<tr>
+				<td>{{post.id}}</td>
+				<td> <a href="{% url 'blog:detail' post.id %}"> {{post.headline}} </a>  </td>
+				<td>{{post.author.username}}</td>
+				<td>{{post.pub_date}}</td>
+			</tr>
+		{% endfor %}
+	</table>
+{% else %}
+<p>검색결과가 없습니다.</p>
+{% endif %}
+<!-- 127.0.0.1:8000/blog/searchP -->
+<form action="" method="GET">
+	{% csrf_token %}
+	<select name='type'>
+		<option value='0'>제목</option>
+		<option value='1'>내용</option>
+	</select>
+	<input type="text" name='query'/>
+	<input type="submit" value="검색"/>
+</form>
+
+
+
+
+{% endblock %}

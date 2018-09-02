@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>설문조사 결과</title>
+</head>
+<body>
+	<h1>{{obj.question_text}}</h1>
+	<h3>{{obj.pub_date}}</h3>
+	<table>
+		<tr>
+			<th>답변항목</th>
+			<th>투표수</th>
+		</tr>
+		{% for c in obj.choice_set.all %}
+			<tr>
+				<td> {{c.choice_text}} </td>
+				<td> {{c.votes}} </td>
+			</tr>
+		{% endfor %}
+	</table>
+	<a href="{% url 'index' %}">메인페이지로 돌아가기</a>
+	
+</body>
+</html>

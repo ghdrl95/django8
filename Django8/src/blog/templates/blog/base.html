@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>dJango Blog</title>
+{% block script %}
+{% endblock %}
+</head>
+<body>
+	<a href="{% url 'index' %}">투표 어플리케이션</a>
+	<a href="{% url 'blog:index' %}">블로그 어플리케이션</a>
+	{%if user.is_authenticated %}
+		<p>
+		
+		{{user.username}}님 환영합니다!
+		<a href="{% url 'customlogin:logout'  %}">로그아웃</a>	
+			
+		</p>
+	{% else %}
+		<a href="{% url 'customlogin:signup' %}">회원가입</a>
+		<a href="{% url 'customlogin:signin' %}">로그인</a>
+	{%endif %}
+<hr>
+{% block content %}
+{% endblock %}
+<hr>
+<p>서울특별시 노원구 </p>
+<p>tel : 010-1234-5678</p>
+</body>
+</html>

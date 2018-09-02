@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>투표 - {{ question.question_text }}</title>
+</head>
+<body>
+	<h1>{{question.question_text}}</h1>
+	<form action="{% url 'vote' %}" method="post">
+		<!-- csrf 공격을 방지하기 위해 django에서 제공하는 기능 
+		     form에 csrf_token이 없으면 웹서버 접근 거부
+		     사용하지 않으려면 setting.py에서 설정-->
+		{% csrf_token %} 
+		<!-- 해당 Question 객체와 연결된 Choice객체 추출 및 radio버튼 생성 -->
+		<!-- 템플릿에서는 함수 호출시 매개변수 사용 X 
+		     -> 따라서 매개변수를 사용하지 않는 함수만 사용 가능 -->
+		<!-- 외래키로 설정된 모델클래스에서 나를 참조하는 객체를 추출시
+		     객체.모델클래스명_set 으로 선택가능 -->
+		<!-- c 변수 : Question객체와 연결된 Choice 객체  -->
+		<!-- for문 안에서 forloop.counter 사용 가능 : 현재 반복횟수를 의미  -->
+		{% for c in question.choice_set.all  %}
+		
+			<input type="radio" name="choice" 
+			       id ="choice{{ forloop.counter }}" value="{{ c.id }}"/>   
+			                             
+			<label for="choice{{ forloop.counter }}"> 
+				{{ c.choice_text }} 
+			</label>
+			<a href="{% url 'deleteC' c.id %}">선택지 삭제</a>
+			<a href="{% url 'updateC' c.id %}">선택지 수정</a>
+		{% endfor %}
+		<input type="submit" value="투표">
+	</form>
+	<a href="{% url 'updateQ' question.id %}">질문 수정</a>
+	<!-- <a href="http://127.0.0.1:8000/">메인페이지 가기</a>  -->
+	<a href="{% url 'index' %}">메인페이지 가기</a>
+</body>
+</html>
+
+

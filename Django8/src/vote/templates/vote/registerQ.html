@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="" method="post">
+		{% csrf_token %}
+		<!-- 폼객체.as_p : <input>, <label>를 <p>를 이용해서 HTML코드로 변환 -->
+		<!-- 폼객체.as_table : <input>,<label>를 테이블형태로 HTML코드 변환 -->
+		{{ form.as_p }} <!-- <input>, <label> 생성 -->
+		<input type="submit" value="질문등록">
+	</form>
+</body>
+</html>

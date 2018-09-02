@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>질문 수정</title>
+</head>
+<body>
+	<form action="" method="post">
+		{% csrf_token %}
+		{{ form.as_p }}
+	<input type="submit" value="질문수정">
+	</form>
+</body>
+</html>
